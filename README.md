@@ -1,1 +1,1 @@
-"# DSOA xPortals built with ASP.Net Core MVC and Aurelia" 
+# DSOA xPortals built with ASP.Net Core, ServiceStack and Aurelia
