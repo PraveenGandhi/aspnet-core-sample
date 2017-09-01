@@ -1,12 +1,18 @@
-import { JsonServiceClient } from 'servicestack-client';
+import { Router } from 'aurelia-router';
+import { autoinject } from 'aurelia-framework';
 import { RegistrationStep1 } from '../../../../xPortalsApi.dtos';
+import { client } from "../../../shared";
 
+@autoinject
 export class Registration {
     user: RegistrationStep1 = new RegistrationStep1();
-    client: JsonServiceClient = new JsonServiceClient('/');
+
+    constructor(private router: Router) { }
 
     register() {
-        this.client.post(this.user).then(console.log);
+        client.post(this.user).then(result => {
+            this.router.navigate(`mobile-verification/${result.PortalTempUser.Id}/${result.PortalTempUser.PhoneNumber}`);
+        });
     }
 }
 

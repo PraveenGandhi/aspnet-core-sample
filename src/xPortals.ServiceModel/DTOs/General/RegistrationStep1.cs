@@ -4,7 +4,6 @@ using xPortals.DTOs.Base;
 
 namespace xPortals.DTOs.General
 {
-    [Route("/registration/step1")]
     public class RegistrationStep1 : IReturn<RegistrationStep1Response>
     {
         public string FirstName { get; set; }

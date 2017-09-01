@@ -6,7 +6,8 @@ namespace xPortals.DomainObjects.General
     public class PortalTempUser
     {
         [PrimaryKey]
-        public Guid? Id { get; set; }
+        [AutoIncrement]
+        public long Id { get; set; }
         public string RequestIP { get; set; }
         public string FirstName { get; set; }
 

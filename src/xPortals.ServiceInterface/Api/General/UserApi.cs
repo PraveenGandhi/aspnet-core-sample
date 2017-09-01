@@ -1,4 +1,6 @@
-﻿using xPortals.DomainObjects.General;
+﻿using ServiceStack;
+using ServiceStack.OrmLite;
+using xPortals.DomainObjects.General;
 using xPortals.DTOs.General;
 using xPortals.Service.General;
 
@@ -26,6 +28,31 @@ namespace xPortals.Api.General
             {
                 PortalTempUser = response
             };
+        }
+
+        public MobileVerificationResponse Post(MobileVerificationRequest request)
+        {
+            var user = Db.SingleById<PortalTempUser>(request.Id);
+            if (!user.MobileVerificationCode.Equals(request.VerificationCode))
+            {
+                return new MobileVerificationResponse
+                {
+                    ResponseStatus = new ResponseStatus
+                    {
+                        ErrorCode = "404",
+                        Message = "Invalid code"
+                    }
+                };
+            }
+            return new MobileVerificationResponse { FullName = user.FullName };
+        }
+
+        public bool Post(SetPasswordRequest request)
+        {
+            var user = Db.SingleById<PortalTempUser>(request.Id);
+            user.Username = request.Username;
+            var count = Db.Update(user, u => u.Id == request.Id);
+            return count > 0;
         }
     }
 }

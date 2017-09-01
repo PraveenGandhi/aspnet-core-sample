@@ -1,8 +1,8 @@
 /* Options:
-Date: 2017-09-01 05:01:12
+Date: 2017-09-01 21:45:26
 Version: 1.043
 Tip: To override a DTO option, remove "//" prefix before updating
-BaseUrl: http://localhost:28603
+BaseUrl: http://localhost:28600
 
 //GlobalNamespace: 
 //MakePropertiesOptional: True
@@ -28,7 +28,7 @@ export interface IReturn<T>
 
 export class PortalTempUser
 {
-    Id: string;
+    Id: number;
     RequestIP: string;
     FirstName: string;
     LastName: string;
@@ -90,7 +90,11 @@ export class RegistrationStep1Response extends WithStatus
     PortalTempUser: PortalTempUser;
 }
 
-// @Route("/registration/step1")
+export class MobileVerificationResponse extends WithStatus
+{
+    FullName: string;
+}
+
 export class RegistrationStep1 implements IReturn<RegistrationStep1Response>
 {
     FirstName: string;
@@ -99,4 +103,22 @@ export class RegistrationStep1 implements IReturn<RegistrationStep1Response>
     PhoneNumber: string;
     createResponse() { return new RegistrationStep1Response(); }
     getTypeName() { return "RegistrationStep1"; }
+}
+
+export class MobileVerificationRequest implements IReturn<MobileVerificationResponse>
+{
+    Id: number;
+    VerificationCode: string;
+    createResponse() { return new MobileVerificationResponse(); }
+    getTypeName() { return "MobileVerificationRequest"; }
+}
+
+export class SetPasswordRequest implements IReturn<boolean>
+{
+    Id: number;
+    Username: string;
+    Password: string;
+    ConfirmPassword: string;
+    createResponse() { return false; }
+    getTypeName() { return "SetPasswordRequest"; }
 }

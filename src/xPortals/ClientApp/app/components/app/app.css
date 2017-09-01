@@ -1,4 +1,8 @@
-﻿body {
+﻿.with-margin {
+    margin: 5em 0 8em;
+}
+
+body {
     background-color: #F3F5FB;
 }
 

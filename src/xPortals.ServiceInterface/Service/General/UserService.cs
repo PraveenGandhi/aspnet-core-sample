@@ -19,12 +19,11 @@ namespace xPortals.Service.General
 
         public PortalTempUser Register(PortalTempUser portalUser)
         {
-            portalUser.Id = Guid.NewGuid();
-            portalUser.MobileVerificationCode = portalUser.Id.ToString().Substring(0, 6);
+            portalUser.MobileVerificationCode = Guid.NewGuid().ToString().Substring(0, 6);
             portalUser.MobileVerificationExpiryAt = DateTime.Now.AddMinutes(5);
             using (var db = dbConnectionFactory.Open())
             {
-                db.Insert(portalUser);
+                portalUser.Id = db.Insert(portalUser,true);
             }
             var message = $"Hello {portalUser.FirstName} {portalUser.LastName},\n\tYour Security code is {portalUser.MobileVerificationCode}";
             communicationService.SendSms(phoneNumber: portalUser.PhoneNumber,message: message);

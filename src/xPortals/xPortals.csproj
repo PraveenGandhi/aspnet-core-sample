@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\app\components\General\home\login\login.ts" />
+    <None Remove="ClientApp\app\components\General\Registration\MobileVerification.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,6 +65,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\General\home\login\login.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\General\Registration\MobileVerification.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
