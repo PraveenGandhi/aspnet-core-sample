@@ -1,6 +1,6 @@
 ﻿import { autoinject } from 'aurelia-framework';
 import { Router } from 'aurelia-router';
-import { MobileVerificationRequest as MVRequest } from '../../../../xPortalsApi.dtos';
+import { MobileVerificationRequest as MVRequest, MobileVerificationResponse as MVResponse} from '../../../../xPortalsApi.dtos';
 import { client } from "../../../shared";
 
 @autoinject
@@ -9,7 +9,7 @@ export class MobileVerification {
     mvRequest: MVRequest = new MVRequest();
     phone: string;
     isLoading: boolean = false;
-
+    result: MVResponse;
     constructor(private router: Router) { }
 
     activate(params: any) {
@@ -22,7 +22,7 @@ export class MobileVerification {
         client.post(this.mvRequest).then(result => {
             this.isLoading = false;
             if (result.ResponseStatus && result.ResponseStatus.ErrorCode) {
-                console.log(result.ResponseStatus.Message);
+                this.result = result;
             }
             else {
                 this.router.navigate(`set-password/${this.mvRequest.Id}/${result.FullName}`);
@@ -34,7 +34,7 @@ export class MobileVerification {
     }
 
     resend() {
-        console.log('sent')
+        console.log('sent');
     }
 }
 

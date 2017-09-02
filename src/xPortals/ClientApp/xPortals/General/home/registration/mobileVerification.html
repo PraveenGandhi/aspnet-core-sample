@@ -8,6 +8,9 @@
                     For security purposes, we have sent a verification code to ${phone}. Please fill that in to proceed.
                 </div>
             </div>
+            <div class="error" ui-message if.bind="result.ResponseStatus.Message">
+                <i class="warning sign icon"></i>${result.ResponseStatus.Message}
+            </div>
             <div class="ui two column middle aligned very relaxed stackable grid">
                 <div class="top aligned column">
                     <form class="with-margin" ui-form submit.trigger="completeRegistration()">

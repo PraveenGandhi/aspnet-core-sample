@@ -1,0 +1,35 @@
+﻿<template bindable="showRegistration">
+    <div show.bind="!showRegistration">
+        <h1 class="blue" ui-header>Not registered yet?</h1>
+        <div style="margin:2em 0 2em;">
+            Initiate, manage and track your DSOA related services and get notified in real time.
+        </div>
+        <div class="ui list li-margin">
+            <div class="item">
+                <i class="checkmark blue icon"></i>
+                <div class="content">
+                    Register, renew and cancel a license.
+                </div>
+            </div>
+            <div class="item">
+                <i class="checkmark blue icon"></i>
+                <div class="content">
+                    Manage employees.
+                </div>
+            </div>
+            <div class="item">
+                <i class="checkmark blue icon"></i>
+                <div class="content">
+                    Manage property.
+                </div>
+            </div>
+            <div class="item">
+                <i class="checkmark blue icon"></i>
+                <div class="content">
+                    Quick and easy from the comfort of your home or office
+                </div>
+            </div>
+        </div>
+        <button click.trigger="showRegistration=true" class="primary" ui-button>Register</button>
+    </div>
+</template>

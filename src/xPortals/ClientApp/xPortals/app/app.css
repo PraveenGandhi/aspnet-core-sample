@@ -1,0 +1,19 @@
+﻿.with-margin {
+    margin: 0.5em 0 8em;
+}
+
+.with-more-margin {
+    margin: 3em auto 12em;
+}
+
+body {
+    background-color: #F3F5FB;
+}
+
+.ui.grid > .column + .divider, .ui.grid > .row > .column + .divider {
+    left: 50%;
+}
+
+.li-margin .item {
+    margin-top: 1em;
+}
