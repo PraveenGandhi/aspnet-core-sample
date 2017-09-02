@@ -2,15 +2,18 @@
     <require from="./login/login"></require>
     <require from="./registration/registration"></require>
     <div class="with-more-margin" ui-container>
-        <div class="raised" ui-segment>
+        <div class="raised" ui-segment="loading.bind: isLoading">
+            <div if.bind="message" class="green" ui-message>
+                <i class="checkmark icon"></i>
+                ${message}
+            </div>
             <div class="ui two column top aligned very relaxed stackable grid">
                 <div class="column">
-                    <registration></registration>
+                    <registration is-loading.two-way="isLoading"></registration>
                 </div>
-                <div class="ui vertical divider">
-                </div>
+                <div class="vertical" ui-divider=""></div>
                 <div class="column">
-                    <login></login>
+                    <login is-loading.two-way="isLoading"></login>
                 </div>
             </div>
         </div>

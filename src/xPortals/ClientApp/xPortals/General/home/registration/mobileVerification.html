@@ -1,9 +1,8 @@
 ﻿<template>
     <div class="ui container with-margin">
-        <div class="raised ${isLoading?'loading':''}" ui-segment>
+        <div class="raised" ui-segment="loading.bind: isLoading">
             <h1 class="green" ui-header>Registration</h1>
-            <div class="blue icon" ui-message>
-                <i class="info icon"></i>
+            <div class="blue icon" ui-message="icon: info">
                 <div class="header">
                     For security purposes, we have sent a verification code to ${phone}. Please fill that in to proceed.
                 </div>
@@ -13,12 +12,8 @@
             </div>
             <div class="ui two column middle aligned very relaxed stackable grid">
                 <div class="top aligned column">
-                    <form class="with-margin" ui-form submit.trigger="completeRegistration()">
-                        <div class="field">
-                            <span><label>Verification code</label></span>
-                            <input type="text" value.bind="mobileVerification.VerificationCode" ui-input>
-                        </div>
-
+                    <form class="with-margin" ui-form submit.trigger="verifyCode()">
+                        <form-control value.bind="user.VerificationCode" label="Verification code" required="true"></form-control>
                         <button type="submit" class="blue" ui-button>Complete Registration</button>
                         <a href="" click.trigger="resend()" ui-button><i class="repeat icon"></i>Resend Code</a>
                     </form>

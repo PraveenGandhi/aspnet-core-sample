@@ -3,32 +3,16 @@
     <registration-hints show-registration.two-way="showRegistration"></registration-hints>
     <div show.bind="showRegistration">
         <h1 class="blue" ui-header>Registration</h1>
-        <form submit.trigger="register()" id="registerForm" class="register-form" data-fv-framework="bootstrap"
-              data-fv-icon-valid="fa fa-check"
-              data-fv-icon-invalid="fa fa-exclamation-triangle"
-              data-fv-icon-validating="glyphicon glyphicon-refresh" ui-form>
+        <form submit.trigger="register()" ui-form>
             <div class="two fields">
-                <div class="field">
-                    <span><label>First Name</label></span>
-                    <input value.bind="user.firstName" type="text" ui-input>
-                </div>
-                <div class="field">
-                    <span><label>Last Name</label></span>
-                    <input value.bind="user.lastName" type="text" ui-input>
-                </div>
+                <form-control value.bind="user.firstName" label="Username/Email" required="true"></form-control>
+                <form-control value.bind="user.lastName" label="Password" required="true"></form-control>
             </div>
-            <div class="field">
-                <span><label>Email</label></span>
-                <input value.bind="user.email" type="text" ui-input>
-            </div>
-            <div class="field">
-                <span><label>Phone Number</label></span>
-                <input value.bind="user.phoneNumber" type="text" ui-input>
-                <small>i.e +971(55) 555 5555</small>
-            </div>
+            <form-control value.bind="user.email" label="Email" required="true"></form-control>
+            <form-control value.bind="user.phoneNumber" label="Phone Number" example="i.e +971(55) 555 5555" required="true"></form-control>
             <p>We will send you an SMS with an verification code to complete your registration.</p>
-            <button class="primary" ui-button type="submit">Register</button>
-            <button ui-button click.trigger="showRegistration=false">Back</button>
+            <button class="primary" type="submit" ui-button>Register</button>
+            <button click.trigger="showRegistration=false" ui-button>Back</button>
         </form>
     </div>
 </template>

@@ -7,17 +7,21 @@ import { client } from "../../../shared";
 export class SetPassword {
     user: SPRequest = new SPRequest();
     fullName: string;
+    isLoading: boolean = false;
 
     constructor(private router: Router) { }
 
     activate(params: any) {
         this.user.Id = params.id;
+        this.fullName = params.fullName;
     }
 
     completeRegistration() {
+        this.isLoading = true;
         client.post(this.user).then(result => {
+            this.isLoading = false;
             console.log(result);
-            this.router.navigate('/');
+            this.router.navigate('/?message=Registration successful..!');
         });
     }
 }

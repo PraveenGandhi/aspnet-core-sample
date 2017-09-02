@@ -1,0 +1,7 @@
+﻿<template>
+    <div class="field">
+        <label for.bind="name">${label}<i class="asterisk icon red" if.bind="required"></i></label>
+        <input type.bind="type" id.bind="name" placeholder.bind="label" value.bind="value">
+        <small if.bind="example">${example}</small>
+    </div>
+</template>

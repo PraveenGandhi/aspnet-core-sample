@@ -17,3 +17,9 @@ body {
 .li-margin .item {
     margin-top: 1em;
 }
+
+.field label i{
+    font-size:5px;
+    margin-bottom:10px;
+    padding:0;
+}
