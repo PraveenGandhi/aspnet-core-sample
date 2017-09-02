@@ -9,4 +9,8 @@
     <PackageReference Include="ServiceStack.Interfaces.Core" Version="1.0.43" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOs\Base\" />
+  </ItemGroup>
+
 </Project>

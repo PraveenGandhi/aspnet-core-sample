@@ -1,5 +1,4 @@
 ﻿using ServiceStack;
-using xPortals.DTOs.Base;
 
 namespace xPortals.DTOs.General
 {
@@ -9,8 +8,9 @@ namespace xPortals.DTOs.General
         public string VerificationCode { get; set; }
     }
 
-    public class MobileVerificationResponse: WithStatus
+    public class MobileVerificationResponse
     {
         public string FullName { get; set; }
+        public ResponseStatus ResponseStatus { get; set; }
     }
 }

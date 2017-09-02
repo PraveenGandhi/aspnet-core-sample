@@ -4,11 +4,10 @@ using ServiceStack;
 using ServiceStack.Admin;
 using ServiceStack.Api.Swagger;
 using ServiceStack.Data;
-using ServiceStack.Mvc;
 using ServiceStack.OrmLite;
+using ServiceStack.Validation;
 using xPortals.Api.General;
 using xPortals.DomainObjects.General;
-using xPortals.Infrastructure;
 
 namespace xPortals.Infrastructure
 {
@@ -37,16 +36,20 @@ namespace xPortals.Infrastructure
             //Register Autofac IoC container adapter, so ServiceStack can use it
             container.Adapter = new AutofacIocAdapter(autoFacContainer);
 
+            //This method scans the assembly for validators
+            container.RegisterValidators(typeof(RegistrationValidator).Assembly);
+
             SetConfig(new HostConfig { UseCamelCase = false });
 
-            this.Plugins.Add(new SwaggerFeature { UseBootstrapTheme = true });
-            this.Plugins.Add(new PostmanFeature());
-            this.Plugins.Add(new CorsFeature());
+            Plugins.Add(new SwaggerFeature { UseBootstrapTheme = true });
+            Plugins.Add(new PostmanFeature());
+            Plugins.Add(new CorsFeature());
 
             //Plugins.Add(new RazorFormat());
 
             Plugins.Add(new AutoQueryFeature { MaxLimit = 100 });
             Plugins.Add(new AdminFeature());
+            Plugins.Add(new ValidationFeature());
 
 
             using (var db = container.Resolve<IDbConnectionFactory>().Open())

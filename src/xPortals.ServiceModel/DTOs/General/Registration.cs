@@ -1,6 +1,5 @@
 ﻿using ServiceStack;
 using xPortals.DomainObjects.General;
-using xPortals.DTOs.Base;
 
 namespace xPortals.DTOs.General
 {
@@ -12,8 +11,9 @@ namespace xPortals.DTOs.General
         public string PhoneNumber { get; set; }
     }
 
-    public class RegistrationResponse: WithStatus
+    public class RegistrationResponse
     {
         public PortalTempUser PortalTempUser { get; set; }
+        public ResponseStatus ResponseStatus { get; set; }
     }
 }

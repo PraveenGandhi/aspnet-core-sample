@@ -3,6 +3,7 @@
     <registration-hints show-registration.two-way="showRegistration"></registration-hints>
     <div show.bind="showRegistration">
         <h1 class="blue" ui-header>Registration</h1>
+        <display-errors errors.bind="result.responseStatus.errors"></display-errors>
         <form submit.trigger="register()" ui-form>
             <div class="two fields">
                 <form-control value.bind="user.firstName" label="Username/Email" required="true"></form-control>

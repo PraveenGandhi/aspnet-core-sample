@@ -1,5 +1,5 @@
 /* Options:
-Date: 2017-09-02 19:01:49
+Date: 2017-09-02 20:59:25
 Version: 1.043
 Tip: To override a DTO option, remove "//" prefix before updating
 BaseUrl: http://localhost:28600
@@ -80,19 +80,22 @@ export class ResponseStatus
     Meta: { [index:string]: string; };
 }
 
-export class WithStatus
+export class RegistrationResponse
 {
+    PortalTempUser: PortalTempUser;
     ResponseStatus: ResponseStatus;
 }
 
-export class RegistrationResponse extends WithStatus
-{
-    PortalTempUser: PortalTempUser;
-}
-
-export class MobileVerificationResponse extends WithStatus
+export class MobileVerificationResponse
 {
     FullName: string;
+    ResponseStatus: ResponseStatus;
+}
+
+export class SetPasswordResponse
+{
+    IsDone: boolean;
+    ResponseStatus: ResponseStatus;
 }
 
 export class Registration implements IReturn<RegistrationResponse>
@@ -113,12 +116,12 @@ export class MobileVerification implements IReturn<MobileVerificationResponse>
     getTypeName() { return "MobileVerification"; }
 }
 
-export class SetPassword implements IReturn<boolean>
+export class SetPassword implements IReturn<SetPasswordResponse>
 {
     Id: number;
     Username: string;
     Password: string;
     ConfirmPassword: string;
-    createResponse() { return false; }
+    createResponse() { return new SetPasswordResponse(); }
     getTypeName() { return "SetPassword"; }
 }

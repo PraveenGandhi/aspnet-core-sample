@@ -47,12 +47,12 @@ namespace xPortals.Api.General
             return new MobileVerificationResponse { FullName = user.FullName };
         }
 
-        public bool Post(SetPassword request)
+        public SetPasswordResponse Post(SetPassword request)
         {
             var user = Db.SingleById<PortalTempUser>(request.Id);
             user.Username = request.Username;
             var count = Db.Update(user, u => u.Id == request.Id);
-            return count > 0;
+            return new SetPasswordResponse { IsDone = count > 0 };
         }
     }
 }

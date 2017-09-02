@@ -29,6 +29,7 @@ export class MobileVerification {
             this.router.navigate(`set-password/${this.user.Id}/${result.FullName}`);
         }).catch(reason => {
             this.isLoading = false;
+            this.result = reason;
             console.log(reason);
         });
     }
