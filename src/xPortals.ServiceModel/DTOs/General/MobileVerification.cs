@@ -3,7 +3,7 @@ using xPortals.DTOs.Base;
 
 namespace xPortals.DTOs.General
 {
-    public class MobileVerificationRequest :IReturn<MobileVerificationResponse>
+    public class MobileVerification :IReturn<MobileVerificationResponse>
     {
         public long Id { get; set; }
         public string VerificationCode { get; set; }

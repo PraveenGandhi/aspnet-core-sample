@@ -1,15 +1,15 @@
 ﻿import { autoinject } from 'aurelia-framework';
 import { Router } from 'aurelia-router';
-import { MobileVerificationRequest as MVRequest, MobileVerificationResponse as MVResponse } from '../../../../xPortalsApi.dtos';
+import { MobileVerification as Request, MobileVerificationResponse as Response } from '../../../../xPortalsApi.dtos';
 import { client } from "../../../shared";
 
 @autoinject
 export class MobileVerification {
 
-    user: MVRequest = new MVRequest();
+    user: Request = new Request();
     phone: string;
     isLoading: boolean = false;
-    result: MVResponse;
+    result: Response;
 
     constructor(private router: Router) { }
 

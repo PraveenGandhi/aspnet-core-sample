@@ -1,11 +1,11 @@
 import { Router } from 'aurelia-router';
 import { autoinject, bindable } from 'aurelia-framework';
-import { RegistrationStep1 as RegistrationRequest } from '../../../../xPortalsApi.dtos';
+import { Registration as Request } from '../../../../xPortalsApi.dtos';
 import { client } from "../../../shared";
 
 @autoinject
 export class Registration {
-    user: RegistrationRequest = new RegistrationRequest();
+    user: Request = new Request();
     @bindable({ defaultBindingMode: 2 }) isLoading: boolean = false;
 
     constructor(private router: Router) { }

@@ -4,7 +4,7 @@ using xPortals.DTOs.Base;
 
 namespace xPortals.DTOs.General
 {
-    public class RegistrationStep1 : IReturn<RegistrationStep1Response>
+    public class Registration : IReturn<RegistrationResponse>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -12,7 +12,7 @@ namespace xPortals.DTOs.General
         public string PhoneNumber { get; set; }
     }
 
-    public class RegistrationStep1Response: WithStatus
+    public class RegistrationResponse: WithStatus
     {
         public PortalTempUser PortalTempUser { get; set; }
     }

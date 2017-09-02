@@ -14,7 +14,7 @@ namespace xPortals.Api.General
         {
             UserService = userService;
         }
-        public object Any(RegistrationStep1 request)
+        public object Any(Registration request)
         {
             var serviceRequest = new PortalTempUser
             {
@@ -24,13 +24,13 @@ namespace xPortals.Api.General
                 Email = request.Email
             };
             var response = UserService.Register(serviceRequest);
-            return new RegistrationStep1Response
+            return new RegistrationResponse
             {
                 PortalTempUser = response
             };
         }
 
-        public MobileVerificationResponse Post(MobileVerificationRequest request)
+        public MobileVerificationResponse Post(MobileVerification request)
         {
             var user = Db.SingleById<PortalTempUser>(request.Id);
             if (!user.MobileVerificationCode.Equals(request.VerificationCode))
@@ -47,7 +47,7 @@ namespace xPortals.Api.General
             return new MobileVerificationResponse { FullName = user.FullName };
         }
 
-        public bool Post(SetPasswordRequest request)
+        public bool Post(SetPassword request)
         {
             var user = Db.SingleById<PortalTempUser>(request.Id);
             user.Username = request.Username;

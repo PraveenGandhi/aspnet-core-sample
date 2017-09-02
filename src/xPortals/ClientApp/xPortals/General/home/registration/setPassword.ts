@@ -1,11 +1,11 @@
 ﻿import { Router } from 'aurelia-router';
 import { autoinject } from 'aurelia-framework';
-import { SetPasswordRequest as SPRequest } from '../../../../xPortalsApi.dtos';
+import { SetPassword as Request } from '../../../../xPortalsApi.dtos';
 import { client } from "../../../shared";
 
 @autoinject
 export class SetPassword {
-    user: SPRequest = new SPRequest();
+    user: Request = new Request();
     fullName: string;
     isLoading: boolean = false;
 
@@ -20,7 +20,6 @@ export class SetPassword {
         this.isLoading = true;
         client.post(this.user).then(result => {
             this.isLoading = false;
-            console.log(result);
             this.router.navigate('/?message=Registration successful..!');
         });
     }
