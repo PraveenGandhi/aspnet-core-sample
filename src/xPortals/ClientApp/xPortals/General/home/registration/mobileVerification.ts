@@ -1,6 +1,6 @@
 ﻿import { autoinject } from 'aurelia-framework';
 import { Router } from 'aurelia-router';
-import { MobileVerification as Request, MobileVerificationResponse as Response } from '../../../../xPortalsApi.dtos';
+import { MobileVerification as Request, MobileVerificationResponse as Response, ResponseError } from '../../../../xPortalsApi.dtos';
 import { client } from "../../../shared";
 
 @autoinject
@@ -14,7 +14,7 @@ export class MobileVerification {
     constructor(private router: Router) { }
 
     activate(params: any) {
-        this.user.Id = params.id;
+        this.user.id = params.id;
         this.phone = params.phone;
     }
 
@@ -23,19 +23,30 @@ export class MobileVerification {
         client.post(this.user).then(result => {
             this.isLoading = false;
             this.result = result;
-            if (result.ResponseStatus && result.ResponseStatus.ErrorCode) {
+            if (result.responseStatus && result.responseStatus.errorCode) {
                 return;
             }
-            this.router.navigate(`set-password/${this.user.Id}/${result.FullName}`);
+            this.router.navigate(`set-password/${this.user.id}/${result.fullName}`);
         }).catch(reason => {
             this.isLoading = false;
             this.result = reason;
+            this.populate()
             console.log(reason);
         });
     }
 
     resend() {
         console.log('sent');
+    }
+
+    private populate() {
+        if (this.result.responseStatus && this.result.responseStatus.errors.length == 0) {
+            var error = new ResponseError();
+            error.message = this.result.responseStatus.message
+            var errors: ResponseError[] = new Array();
+            errors = [error];
+            this.result.responseStatus.errors = errors;
+        }
     }
 }
 

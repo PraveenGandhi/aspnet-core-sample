@@ -16,7 +16,7 @@ export class Registration {
         client.post(this.user).then(result => {
             this.isLoading = false;
             this.result = result;
-            this.router.navigate(`mobile-verification/${result.PortalTempUser.Id}/${result.PortalTempUser.PhoneNumber}`);
+            this.router.navigate(`mobile-verification/${result.portalTempUser.id}/${result.portalTempUser.phoneNumber}`);
         }).catch(result => {
             this.result = result;
             this.isLoading = false;

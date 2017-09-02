@@ -39,7 +39,7 @@ namespace xPortals.Infrastructure
             //This method scans the assembly for validators
             container.RegisterValidators(typeof(RegistrationValidator).Assembly);
 
-            SetConfig(new HostConfig { UseCamelCase = false });
+            SetConfig(new HostConfig { UseCamelCase = true });
 
             Plugins.Add(new SwaggerFeature { UseBootstrapTheme = true });
             Plugins.Add(new PostmanFeature());

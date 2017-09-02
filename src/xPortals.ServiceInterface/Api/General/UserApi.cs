@@ -1,7 +1,7 @@
-﻿using ServiceStack;
-using ServiceStack.OrmLite;
+﻿using ServiceStack.OrmLite;
 using xPortals.DomainObjects.General;
 using xPortals.DTOs.General;
+using xPortals.Exceptions.General;
 using xPortals.Service.General;
 
 namespace xPortals.Api.General
@@ -35,14 +35,7 @@ namespace xPortals.Api.General
             var user = Db.SingleById<PortalTempUser>(request.Id);
             if (!user.MobileVerificationCode.Equals(request.VerificationCode))
             {
-                return new MobileVerificationResponse
-                {
-                    ResponseStatus = new ResponseStatus
-                    {
-                        ErrorCode = "404",
-                        Message = "Invalid code"
-                    }
-                };
+                throw new InvalidVerificationCode("Invalid code");
             }
             return new MobileVerificationResponse { FullName = user.FullName };
         }

@@ -13,7 +13,7 @@ export class SetPassword {
     constructor(private router: Router) { }
 
     activate(params: any) {
-        this.user.Id = params.id;
+        this.user.id = params.id;
         this.fullName = params.fullName;
     }
 
