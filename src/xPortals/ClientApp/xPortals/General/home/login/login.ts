@@ -1,22 +1,23 @@
 ﻿import { Router } from 'aurelia-router';
 import { autoinject, bindable } from 'aurelia-framework';
-import { Registration as Request } from '../../../../xPortalsApi.dtos';
+import { Authenticate } from '../../../../xPortalsApi.dtos';
 import { client } from "../../../shared";
 
 @autoinject
 export class Login {
-    user: Request = new Request();
+    user: Authenticate = new Authenticate();
     @bindable({ defaultBindingMode: 2 }) isLoading: boolean = false;
 
     constructor(private router: Router) { }
 
     login() {
         this.isLoading = true;
-        /*client.post(this.user).then(result => {
+        this.user.provider = 'credentials';
+        this.user.useTokenCookie = true;
+        client.send('post', this.user).then(result => {
+            console.log(result);
             this.isLoading = false;
-            this.router.navigate(`mobile-verification/${result.PortalTempUser.Id}/${result.PortalTempUser.PhoneNumber}`);
-        });*/
-        setTimeout(() => { this.isLoading = false; }, 1500)
+            //this.router.navigate(`mobile-verification/${result.PortalTempUser.Id}/${result.PortalTempUser.PhoneNumber}`);
+        });
     }
 }
-

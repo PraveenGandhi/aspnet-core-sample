@@ -1,4 +1,5 @@
-﻿using ServiceStack.OrmLite;
+﻿using ServiceStack.Auth;
+using ServiceStack.OrmLite;
 using xPortals.DomainObjects.General;
 using xPortals.DTOs.General;
 using xPortals.Exceptions.General;
@@ -8,12 +9,15 @@ namespace xPortals.Api.General
 {
     public class UserApi : BaseServiceStackApi
     {
-        public IUserService UserService { get; set; }
+        private IUserService userService;
+        private IAuthRepository authRepository;
 
-        public UserApi(IUserService userService)
+        public UserApi(IUserService userService, IAuthRepository authRepository)
         {
-            UserService = userService;
+            this.userService = userService;
+            this.authRepository = authRepository;
         }
+
         public object Any(Registration request)
         {
             var serviceRequest = new PortalTempUser
@@ -23,7 +27,7 @@ namespace xPortals.Api.General
                 PhoneNumber = request.PhoneNumber,
                 Email = request.Email
             };
-            var response = UserService.Register(serviceRequest);
+            var response = userService.Register(serviceRequest);
             return new RegistrationResponse
             {
                 PortalTempUser = response
@@ -45,6 +49,17 @@ namespace xPortals.Api.General
             var user = Db.SingleById<PortalTempUser>(request.Id);
             user.Username = request.Username;
             var count = Db.Update(user, u => u.Id == request.Id);
+            var authSession = new UserAuth
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                UserName = user.Username,
+                FullName = user.FullName
+            };
+
+            authRepository.CreateUserAuth(authSession, request.Password);
             return new SetPasswordResponse { IsDone = count > 0 };
         }
     }

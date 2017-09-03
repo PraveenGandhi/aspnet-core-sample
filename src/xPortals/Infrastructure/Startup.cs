@@ -26,28 +26,14 @@ namespace xPortals.Infrastructure
 
         public IContainer ApplicationContainer { get; private set; }
 
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            //services.AddMvc();
-
-            // Adds a default in-memory implementation of IDistributedCache.
-            //services.AddDistributedMemoryCache();
-
-            /*services.AddSession(options =>
-            {
-                // Set a short timeout for easy testing.
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
-                options.CookieHttpOnly = true;
-            });*/
-
             // Added - uses IOptions<T> for your settings.
             services.AddOptions();
 
             // Added - Confirms that we have a home for our DemoSettings
             services.Configure<AppSettings>(Configuration.GetSection("xPortals"));
-
 
             // Create the container builder.
             var builder = new ContainerBuilder();
@@ -73,7 +59,7 @@ namespace xPortals.Infrastructure
                 .Where(a => a.FullName.Contains(nameof(xPortals)))
                 .ToList();
             ourAssemblies.Add(typeof(UserService).Assembly);
-            var fullnames = AppDomain.CurrentDomain.GetAssemblies().Select(a => a.FullName).ToList().OrderByDescending(x=>x);
+            var fullnames = AppDomain.CurrentDomain.GetAssemblies().Select(a => a.FullName).ToList().OrderByDescending(x => x);
             var types = ourAssemblies.FirstNonDefault().DefinedTypes;
             // Register all services of xPortals as Single Instances
             builder.RegisterAssemblyTypes(ourAssemblies.ToArray())
@@ -107,39 +93,16 @@ namespace xPortals.Infrastructure
             if (env.IsDevelopment())
             {
                 app.
-                    //UseSession().
                     UseDeveloperExceptionPage().
                     UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                     {
                         HotModuleReplacement = true
                     });
             }
-            else
-            {
-                //app.UseSession();//.UseExceptionHandler("/Home/Error");
-            }
 
             app.UseStaticFiles();
 
             app.UseServiceStack(new AppHost(ApplicationContainer));
-
-            /*
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "areaRoute",
-                    template: "{area:exists}/{controller=Home}/{action=Index}");
-
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-
-                routes.MapSpaFallbackRoute(
-                    name: "spa-fallback",
-                    defaults: new { controller = "Home", action = "Index" });
-            });
-            */
-
 
             // If you want to dispose of resources that have been resolved in the
             // application container, register for the "ApplicationStopped" event.

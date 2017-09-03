@@ -6,8 +6,8 @@
         <display-errors errors.bind="result.responseStatus.errors"></display-errors>
         <form submit.trigger="register()" ui-form>
             <div class="two fields">
-                <form-control value.bind="user.firstName" label="Username/Email" required="true"></form-control>
-                <form-control value.bind="user.lastName" label="Password" required="true"></form-control>
+                <form-control value.bind="user.firstName" label="First Name" required="true"></form-control>
+                <form-control value.bind="user.lastName" label="Last Name" required="true"></form-control>
             </div>
             <form-control value.bind="user.email" label="Email" required="true"></form-control>
             <form-control value.bind="user.phoneNumber" label="Phone Number" example="i.e +971(55) 555 5555" required="true"></form-control>
