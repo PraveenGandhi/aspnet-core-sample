@@ -1,5 +1,5 @@
 /* Options:
-Date: 2017-09-03 16:34:03
+Date: 2017-09-03 17:13:37
 Version: 1.043
 Tip: To override a DTO option, remove "//" prefix before updating
 BaseUrl: http://localhost:28600
@@ -32,7 +32,7 @@ export class PortalTempUser
     requestIP: string;
     firstName: string;
     lastName: string;
-    username: string;
+    userName: string;
     password: string;
     phoneNumber: string;
     email: string;

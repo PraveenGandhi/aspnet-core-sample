@@ -1,4 +1,5 @@
-﻿using ServiceStack.Auth;
+﻿using ServiceStack;
+using ServiceStack.Auth;
 using ServiceStack.OrmLite;
 using xPortals.DomainObjects.General;
 using xPortals.DTOs.General;
@@ -20,18 +21,9 @@ namespace xPortals.Api.General
 
         public object Any(Registration request)
         {
-            var serviceRequest = new PortalTempUser
-            {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                PhoneNumber = request.PhoneNumber,
-                Email = request.Email
-            };
+            var serviceRequest = request.ConvertTo<PortalTempUser>();
             var response = userService.Register(serviceRequest);
-            return new RegistrationResponse
-            {
-                PortalTempUser = response
-            };
+            return new RegistrationResponse { PortalTempUser = response };
         }
 
         public MobileVerificationResponse Post(MobileVerification request)
@@ -47,18 +39,9 @@ namespace xPortals.Api.General
         public SetPasswordResponse Post(SetPassword request)
         {
             var user = Db.SingleById<PortalTempUser>(request.Id);
-            user.Username = request.Username;
+            user.UserName = request.Username;
             var count = Db.Update(user, u => u.Id == request.Id);
-            var authSession = new UserAuth
-            {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email,
-                PhoneNumber = user.PhoneNumber,
-                UserName = user.Username,
-                FullName = user.FullName
-            };
-
+            var authSession = user.ConvertTo<UserAuth>();
             authRepository.CreateUserAuth(authSession, request.Password);
             return new SetPasswordResponse { IsDone = count > 0 };
         }
