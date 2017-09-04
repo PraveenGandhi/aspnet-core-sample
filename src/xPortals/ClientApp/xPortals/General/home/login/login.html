@@ -1,5 +1,6 @@
 ﻿<template>
     <h1 class="green" ui-header>Login</h1>
+    <display-errors result.bind="result"></display-errors>
     <form submit.trigger="login()" ui-form>
         <form-control value.bind="user.username" label="Username/Email" required="true"></form-control>
         <form-control value.bind="user.password" label="Password" required="true" type="password"></form-control>

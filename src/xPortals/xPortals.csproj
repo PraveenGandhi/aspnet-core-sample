@@ -17,8 +17,10 @@
   <ItemGroup>
     <None Remove="ClientApp\xPortals\General\home\login\login.ts" />
     <None Remove="ClientApp\xPortals\General\home\registration\MobileVerification.ts" />
+    <None Remove="ClientApp\xPortals\resources\elements\display-errors.ts" />
     <None Remove="ClientApp\xPortals\resources\elements\form-control.ts" />
     <None Remove="ClientApp\xPortals\resources\index.ts" />
+    <None Remove="ClientApp\xPortals\resources\value-converters\date.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -68,8 +70,10 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\xPortals\General\home\login\login.ts" />
     <TypeScriptCompile Include="ClientApp\xPortals\General\home\registration\mobileVerification.ts" />
+    <TypeScriptCompile Include="ClientApp\xPortals\resources\elements\display-errors.ts" />
     <TypeScriptCompile Include="ClientApp\xPortals\resources\elements\form-control.ts" />
     <TypeScriptCompile Include="ClientApp\xPortals\resources\index.ts" />
+    <TypeScriptCompile Include="ClientApp\xPortals\resources\value-converters\date.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

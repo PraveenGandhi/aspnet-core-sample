@@ -5,10 +5,7 @@ export function configure(config: FrameworkConfiguration): void {
         PLATFORM.moduleName('./elements/dso-header'),
         PLATFORM.moduleName('./elements/dso-footer'),
         PLATFORM.moduleName('./elements/form-control'),
-        PLATFORM.moduleName('./elements/display-errors.html'),
-
-
-
+        PLATFORM.moduleName('./elements/display-errors'),
 
         PLATFORM.moduleName('./value-converters/capital')
     ]);

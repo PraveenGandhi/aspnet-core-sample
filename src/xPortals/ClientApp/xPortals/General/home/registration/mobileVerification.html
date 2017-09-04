@@ -10,7 +10,7 @@
             <div class="error" ui-message if.bind="result.ResponseStatus.Message">
                 <i class="warning sign icon"></i>${result.ResponseStatus.Message}
             </div>
-            <display-errors errors.bind="result.responseStatus.errors"></display-errors>
+            <display-errors result.bind="result"></display-errors>
             <div class="ui two column middle aligned very relaxed stackable grid">
                 <div class="top aligned column">
                     <form class="with-margin" ui-form submit.trigger="verifyCode()">

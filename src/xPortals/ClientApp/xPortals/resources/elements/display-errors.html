@@ -1,5 +1,5 @@
-﻿<template bindable="errors">
-    <div class="error" ui-message if.bind="errors">
-        <p repeat.for="obj of errors">${obj.message}</p>
+﻿<template bindable="result">
+    <div class="error" ui-message if.bind="result.responseStatus.errors">
+        <p repeat.for="obj of result.responseStatus.errors">${obj.message}</p>
     </div>
 </template>

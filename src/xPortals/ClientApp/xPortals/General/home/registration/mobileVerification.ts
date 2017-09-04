@@ -5,7 +5,6 @@ import { client } from "../../../shared";
 
 @autoinject
 export class MobileVerification {
-
     user: Request = new Request();
     phone: string;
     isLoading: boolean = false;
@@ -30,7 +29,6 @@ export class MobileVerification {
         }).catch(reason => {
             this.isLoading = false;
             this.result = reason;
-            this.populate()
             console.log(reason);
         });
     }
@@ -38,15 +36,4 @@ export class MobileVerification {
     resend() {
         console.log('sent');
     }
-
-    private populate() {
-        if (this.result.responseStatus && this.result.responseStatus.errors.length == 0) {
-            var error = new ResponseError();
-            error.message = this.result.responseStatus.message
-            var errors: ResponseError[] = new Array();
-            errors = [error];
-            this.result.responseStatus.errors = errors;
-        }
-    }
 }
-

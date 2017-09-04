@@ -6,6 +6,7 @@ using ServiceStack.Api.Swagger;
 using ServiceStack.Auth;
 using ServiceStack.Caching;
 using ServiceStack.Data;
+using ServiceStack.Logging;
 using ServiceStack.OrmLite;
 using ServiceStack.Validation;
 using xPortals.Api.General;
@@ -33,6 +34,9 @@ namespace xPortals.Infrastructure
         /// </summary>
         public override void Configure(Container container)
         {
+            //Console.WriteLine
+            LogManager.LogFactory = new ConsoleLogFactory(debugEnabled: true);
+
             container.Register<IAuthRepository>(c =>
             new OrmLiteAuthRepository(container.Resolve<IDbConnectionFactory>())
             {

@@ -1,5 +1,5 @@
 /* Options:
-Date: 2017-09-03 17:13:37
+Date: 2017-09-04 06:31:49
 Version: 1.043
 Tip: To override a DTO option, remove "//" prefix before updating
 BaseUrl: http://localhost:28600
@@ -24,25 +24,6 @@ export interface IReturnVoid
 export interface IReturn<T>
 {
     createResponse() : T;
-}
-
-export class PortalTempUser
-{
-    id: number;
-    requestIP: string;
-    firstName: string;
-    lastName: string;
-    userName: string;
-    password: string;
-    phoneNumber: string;
-    email: string;
-    mobileVerificationCode: string;
-    mobileVerificationExpiryAt: string;
-    isMobileVerified: boolean;
-    emailVerificationCode: string;
-    emailVerificationExpiryAt: string;
-    isEmailVerified: boolean;
-    fullName: string;
 }
 
 // @DataContract
@@ -80,6 +61,25 @@ export class ResponseStatus
     meta: { [index:string]: string; };
 }
 
+export class PortalTempUser
+{
+    id: number;
+    requestIP: string;
+    firstName: string;
+    lastName: string;
+    userName: string;
+    password: string;
+    phoneNumber: string;
+    email: string;
+    mobileVerificationCode: string;
+    mobileVerificationExpiryAt: string;
+    isMobileVerified: boolean;
+    emailVerificationCode: string;
+    emailVerificationExpiryAt: string;
+    isEmailVerified: boolean;
+    fullName: string;
+}
+
 // @DataContract
 export class UserApiKey
 {
@@ -91,6 +91,12 @@ export class UserApiKey
 
     // @DataMember(Order=3)
     expiryDate: string;
+}
+
+export class LeaseTerminationResponse
+{
+    leaseExpiryDate: string;
+    responseStatus: ResponseStatus;
 }
 
 export class RegistrationResponse
@@ -196,6 +202,14 @@ export class GetApiKeysResponse
 
     // @DataMember(Order=2)
     responseStatus: ResponseStatus;
+}
+
+export class LeaseTermination implements IReturn<LeaseTerminationResponse>
+{
+    type: string;
+    id: string;
+    createResponse() { return new LeaseTerminationResponse(); }
+    getTypeName() { return "LeaseTermination"; }
 }
 
 export class Registration implements IReturn<RegistrationResponse>

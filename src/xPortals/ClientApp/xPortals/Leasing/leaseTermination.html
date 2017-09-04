@@ -1,0 +1,57 @@
+<template>
+    <div class="with-margin" ui-container>
+        <div class="raised" ui-segment="loading.bind: isLoading">
+            <div if.bind="message" class="green" ui-message>
+                <i class="checkmark icon"></i>
+                ${message}
+            </div>
+            <h1 ui-header>${entity.type | capital} Lease Termination</h1>
+            <h1 ui-header>Termination Details</h1>
+            <p>Please provide the reason for termination</p>
+            <form submit.trigger="" ui-form>
+                <div class="ui two column top aligned very relaxed stackable grid">
+                    <div class="column">
+                        <div class="grouped fields" if.bind="entity.type=='company'">
+                            <label>Please provide the reason for termination</label>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" value="Company Deregistration" checked.bind="Reason">
+                                    <label>Company Deregistration</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" value="Company Migration" checked.bind="Reason">
+                                    <label>Company Migration</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" value="Other" checked.bind="Reason">
+                                    <label>Other</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <textarea if.bind="Reason=='Other'" value.bind="OtherReason"></textarea>
+                            </div>
+                        </div>
+                        <div class="field" if.bind="entity.type!='company'">
+                            <textarea value.bind="OtherReason"></textarea>
+                        </div>
+
+                        <div ui-header="size: tiny">
+                            Expiration date for current  ${entity.type=='company'?'company lease':'lease agreement'}: ${result.leaseExpiryDate}
+                            <br /><br />
+                            For early termination change the date below to an earlier value.
+                        </div>
+
+                        <form-control value.bind="entity.date" label="Date" required="true" type="date"></form-control>
+
+                        <button ui-button>Save for later</button>
+                        <button type="submit" class="primary" ui-button>Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>

@@ -21,6 +21,7 @@ export class SetPassword {
         this.isLoading = true;
         client.post(this.user).then(result => {
             this.isLoading = false;
+            this.result = result;
             this.router.navigate('/?message=Registration successful..!');
         }).catch(result => {
             this.result = result;
@@ -28,4 +29,3 @@ export class SetPassword {
         });
     }
 }
-
