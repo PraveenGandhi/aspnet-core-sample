@@ -7,6 +7,7 @@ export function configure(config: FrameworkConfiguration): void {
         PLATFORM.moduleName('./elements/form-control'),
         PLATFORM.moduleName('./elements/display-errors'),
 
-        PLATFORM.moduleName('./value-converters/capital')
+        PLATFORM.moduleName('./value-converters/capital'),
+        PLATFORM.moduleName('./value-converters/date')
     ]);
 }

@@ -5,14 +5,14 @@ var extractCSS = new ExtractTextPlugin('vendor.css');
 
 module.exports = ({ prod } = {}) => {
     const isDevBuild = !prod;
-    
+
     return [{
         stats: { modules: false },
         resolve: {
             extensions: ['.js'],
             alias: {
-                'semantic-ui': path.resolve(__dirname, "semantic/dist/semantic.js" ),
-                semantic: path.resolve(__dirname, 'semantic/dist' )
+                'semantic-ui': path.resolve(__dirname, "semantic/dist/semantic.js"),
+                semantic: path.resolve(__dirname, 'semantic/dist')
             },
             symlinks: false
         },
@@ -22,11 +22,10 @@ module.exports = ({ prod } = {}) => {
                 { test: /\.css(\?|$)/, loader: extractCSS.extract([isDevBuild ? 'css-loader' : 'css-loader?minimize']) }
             ]
         },
-        
+
         entry: {
             vendor: [
                 'aurelia-event-aggregator',
-                'aurelia-fetch-client',
                 'aurelia-framework',
                 'aurelia-history-browser',
                 'aurelia-logging-console',
@@ -40,7 +39,8 @@ module.exports = ({ prod } = {}) => {
                 'jquery',
                 'semantic-ui',
                 'aurelia-semantic-ui',
-                'servicestack-client'
+                'servicestack-client',
+                'moment'
             ],
         },
         output: {
@@ -51,12 +51,12 @@ module.exports = ({ prod } = {}) => {
         },
         plugins: [
             extractCSS,
-            new webpack.ProvidePlugin({ 
+            new webpack.ProvidePlugin({
                 $: 'jquery',
                 jQuery: 'jquery',
                 'semantic-ui': 'semantic',
                 'aurelia-framework': 'aurelia-framework'
-             }), // Maps these identifiers to the jQuery package (because Bootstrap expects it to be a global variable)
+            }), // Maps these identifiers to the jQuery package (because Bootstrap expects it to be a global variable)
             new webpack.DllPlugin({
                 path: path.join(__dirname, 'wwwroot', 'dist', '[name]-manifest.json'),
                 name: '[name]_[hash]'

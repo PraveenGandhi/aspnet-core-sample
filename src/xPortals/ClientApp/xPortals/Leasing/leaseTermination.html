@@ -40,7 +40,7 @@
                         </div>
 
                         <div ui-header="size: tiny">
-                            Expiration date for current  ${entity.type=='company'?'company lease':'lease agreement'}: ${result.leaseExpiryDate}
+                            Expiration date for current  ${entity.type=='company'?'company lease':'lease agreement'}: ${result.leaseExpiryDate | date}
                             <br /><br />
                             For early termination change the date below to an earlier value.
                         </div>

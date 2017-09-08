@@ -12,6 +12,7 @@
     "aurelia-semantic-ui": "0.0.1-alpha.21",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.2.1",
+	"moment": "^2.18.1",
     "servicestack-client": "0.0.39"
   },
   "devDependencies": {
