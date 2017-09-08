@@ -18,5 +18,13 @@ namespace xPortals.Api.Leasing
             log.Debug(session.Email);
             return new LeaseTerminationResponse() { LeaseExpiryDate = DateTime.Now.AddYears(1) };
         }
+
+        public object Post(LeaseTerminationPost request)
+        {
+            IAuthSession session = GetSession();
+            log.Debug(session.UserAuthId);
+            log.Debug(session.Email);
+            return new LeaseTerminationResponse() { LeaseExpiryDate = DateTime.Now.AddYears(1) };
+        }
     }
 }

@@ -1,5 +1,5 @@
 /* Options:
-Date: 2017-09-04 06:31:49
+Date: 2017-09-08 12:56:58
 Version: 1.043
 Tip: To override a DTO option, remove "//" prefix before updating
 BaseUrl: http://localhost:28600
@@ -94,6 +94,12 @@ export class UserApiKey
 }
 
 export class LeaseTerminationResponse
+{
+    leaseExpiryDate: string;
+    responseStatus: ResponseStatus;
+}
+
+export class LeaseTerminationPostResponse
 {
     leaseExpiryDate: string;
     responseStatus: ResponseStatus;
@@ -210,6 +216,17 @@ export class LeaseTermination implements IReturn<LeaseTerminationResponse>
     id: string;
     createResponse() { return new LeaseTerminationResponse(); }
     getTypeName() { return "LeaseTermination"; }
+}
+
+export class LeaseTerminationPost implements IReturn<LeaseTerminationPostResponse>
+{
+    type: string;
+    id: string;
+    reason: string;
+    otherReason: string;
+    terminationDate: string;
+    createResponse() { return new LeaseTerminationPostResponse(); }
+    getTypeName() { return "LeaseTerminationPost"; }
 }
 
 export class Registration implements IReturn<RegistrationResponse>

@@ -10,7 +10,9 @@ export class DisplayErrors {
 
     resultChanged(value: any) {
         this.result = value;
-        if (this.result && this.result.responseStatus && this.result.responseStatus.errors.length == 0) {
+        if (this.result && this.result.responseStatus
+            && this.result.responseStatus.errors
+            && this.result.responseStatus.errors.length == 0) {
             var error = new ResponseError();
             error.message = this.result.responseStatus.message
             var errors: ResponseError[] = new Array();

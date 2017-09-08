@@ -16,9 +16,10 @@ export class Login {
         this.user.provider = 'credentials';
         this.user.useTokenCookie = true;
 
-        client.send('post', this.user).then(result => {
+        client.post(this.user).then(result => {
             console.log(result);
             this.isLoading = false;
+            this.result = result;
             //this.router.navigate(`mobile-verification/${result.PortalTempUser.Id}/${result.PortalTempUser.PhoneNumber}`);
         }).catch(result => {
             this.result = result;
